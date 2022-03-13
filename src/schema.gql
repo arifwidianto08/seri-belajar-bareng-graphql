@@ -1,0 +1,42 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Book {
+  """Book ID"""
+  id: Int!
+
+  """Book Title"""
+  title: String!
+
+  """Book ISBN"""
+  isbn: String!
+
+  """Is this book published?"""
+  isPublished: Boolean!
+
+  """Book Summary"""
+  summary: String
+}
+
+type Query {
+  books: [Book!]!
+}
+
+type Mutation {
+  createBook(createBookInput: CreateBookInput!): Book!
+}
+
+input CreateBookInput {
+  """Book Title"""
+  title: String!
+
+  """Book ISBN"""
+  isbn: String!
+
+  """Is this book published?"""
+  isPublished: Boolean!
+
+  """Book Summary"""
+  summary: String
+}
