@@ -6,6 +6,9 @@ import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { BookModule } from './book/book.module';
+import { UserModule } from './user/user.module';
+import { AuthResolver } from './auth/auth.resolver';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -26,8 +29,10 @@ import { BookModule } from './book/book.module';
       synchronize: true,
     }),
     BookModule,
+    UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AuthResolver],
 })
 export class AppModule {}

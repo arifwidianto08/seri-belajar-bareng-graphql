@@ -19,12 +19,47 @@ type Book {
   summary: String
 }
 
+type User {
+  """User ID"""
+  id: Int!
+
+  """User Full Name"""
+  fullName: String!
+
+  """Username"""
+  username: String!
+
+  """User Age"""
+  age: Int
+}
+
+type LoginResponse {
+  """Access Token"""
+  access_token: String!
+
+  """User Detail"""
+  user: User!
+}
+
 type Query {
   books: [Book!]!
+  user: [User!]!
 }
 
 type Mutation {
+  login(loginUserInput: LoginUserInput!): LoginResponse!
   createBook(createBookInput: CreateBookInput!): Book!
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: Int!): User!
+}
+
+input LoginUserInput {
+  """Username"""
+  username: String!
+
+  """Password"""
+  password: String!
 }
 
 input CreateBookInput {
@@ -39,4 +74,33 @@ input CreateBookInput {
 
   """Book Summary"""
   summary: String
+}
+
+input CreateUserInput {
+  """User Full Name"""
+  fullName: String!
+
+  """Username"""
+  username: String!
+
+  """User Age"""
+  age: Int
+
+  """Username"""
+  password: String!
+}
+
+input UpdateUserInput {
+  """User Full Name"""
+  fullName: String
+
+  """Username"""
+  username: String
+
+  """User Age"""
+  age: Int
+
+  """Username"""
+  password: String
+  id: Int!
 }

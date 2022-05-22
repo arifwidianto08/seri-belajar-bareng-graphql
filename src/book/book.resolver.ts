@@ -1,4 +1,6 @@
+import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreateBookInput } from './book.dto';
 import { Book } from './book.entity';
 import { BookService } from './book.service';
@@ -13,6 +15,7 @@ export class BookResolver {
   }
 
   @Query(() => [Book])
+  @UseGuards(JwtAuthGuard)
   async books() {
     return await this.bookService.findAll();
   }
